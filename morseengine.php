@@ -1,3 +1,62 @@
+<?php
+
+function stringToMorse($string) {
+    $stringParts = str_split(strtolower($string));
+
+    $morseDictionary = [
+        'a' => '.-',
+        'b' => '-...',
+        'c' => '-.-.',
+        'd' => '-..',
+        'e' => '.',
+        'f' => '..-.',
+        'g' => '--.',
+        'h' => '....',
+        'i' => '..',
+        'j' => '.---',
+        'k' => '-.-',
+        'l' => '.-..',
+        'm' => '--',
+        'n' => '-.',
+        'o' => '---',
+        'p' => '.--.',
+        'q' => '--.-',
+        'r' => '.-.',
+        's' => '...',
+        't' => '-',
+        'u' => '..-',
+        'v' => '...-',
+        'w' => '.--',
+        'x' => '-..-',
+        'y' => '-.--',
+        'z' => '--..',
+        '0' => '-----',
+        '1' => '.----',
+        '2' => '..---',
+        '3' => '...--',
+        '4' => '....-',
+        '5' => '.....',
+        '6' => '-....',
+        '7' => '--...',
+        '8' => '---..',
+        '9' => '----.',
+        '.' => '.-.-.-',
+        ',' => '--..--',
+        '?' => '..--..',
+        '/' => '-..-.',
+        ' ' => '   ',
+    ];
+
+    $morse = '';
+    foreach ($stringParts as $stringPart) {
+        if (array_key_exists($stringPart, $morseDictionary)) {
+            $morse .= $morseDictionary[$stringPart] . ' ';
+        }
+    }
+    //return $morse;
+    echo $morse;
+}
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -32,9 +91,14 @@
       <div class="row">
         <div class="col-sm-4" style="padding-bottom: 20px; background-color: rgba(176,185,196,0.5)">
             <form method = "POST" action="morseengine.php" name="text">
-                            <label for="story">Wpisz text:</label>
-                            <textarea id="text" name="tocode" rows="8"
-                                 style="width: 100%; height: 100%; background-color: rgba(0,126,194,0.1)"></textarea>
+                <label for="story">Wpisz text:</label>
+                <textarea id="text" name="tocode" rows="8" style="width: 100%; height: 100%; background-color: rgba(0,126,194,0.1)">
+<?php    if(array_key_exists('code', $_POST)){
+$texttocode = $_POST['tocode']. PHP_EOL;      
+}
+stringToMorse($texttocode);
+?>
+                </textarea>
 
                     </div>
                     <div class="col-sm-4" style="padding-bottom: 20px; background-color: rgba(176,185,196,0.5)">
