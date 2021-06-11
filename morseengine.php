@@ -152,23 +152,15 @@ function morseToString($morseCode){
 <?php
     if(array_key_exists('code', $_POST)){
     $texttocode = $_POST['tocode']. PHP_EOL;
-    $morse = stringToMorse($texttocode);
-        $fd = fopen('./files/codedtext.txt', 'w');
-        fwrite($fd, $morse);
-        fclose($fd);
-        echo $morse;
+    echo $texttocode;
 }
 else if(array_key_exists('decode', $_POST)){
     $texttocode = $_POST['tocode']. PHP_EOL;
-    $morse = morseToString($texttocode);
-        $fd = fopen('./files/decodedtext.txt', 'w');
-        fwrite($fd, $morse);
-        fclose($fd);
-        echo $morse; 
+    echo $texttocode; 
 }
 if (isset($_POST['readfile'])) {
     $currentDirectory = getcwd();
-    $uploadDirectory = "/uploads/";
+    $uploadDirectory = "./uploads/";
     $fileName = $_FILES['the_file']['name'];
     $fileTmpName  = $_FILES['the_file']['tmp_name'];
     $uploadPath = $currentDirectory . $uploadDirectory . basename($fileName); 
@@ -192,8 +184,6 @@ else {
     echo "File downloading failed.";
 }
 }
-
-
 ?>
                 </textarea>
                     </div>
@@ -215,16 +205,33 @@ else {
                                     </li>
                                   </ul>            
                             </div>
-                            <div></div>
-
-                    </div>
-                   
+                    </div>   
             </form>
-          
+                  <div class="col-sm-4" style=" padding-bottom: 20px; background-color: rgba(176,185,196,0.5); height: 70%">
+                    <form method = "post" action=# name="text">
+                        <label for="story">Wynik:</label>
+                        <textarea id="text" name="tocode" rows="20" style="width: 100%; height: 100%; background-color: rgba(0,126,194,0.1)"><?php
+    if(array_key_exists('code', $_POST)){
+    $texttocode = $_POST['tocode']. PHP_EOL;
+    $morse = stringToMorse($texttocode);
+        $fd = fopen('./files/codedtext.txt', 'w');
+        fwrite($fd, $morse);
+        fclose($fd);
+        echo $morse;
+}
+else if(array_key_exists('decode', $_POST)){
+    $texttocode = $_POST['tocode']. PHP_EOL;
+    $morse = morseToString($texttocode);
+        $fd = fopen('./files/decodedtext.txt', 'w');
+        fwrite($fd, $morse);
+        fclose($fd);
+        echo $morse; 
+}
+?></textarea>  
+                    </form>
+                   </div>
       </div>
-
   </div>
 </div>
-
 </body>
 </html>

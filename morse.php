@@ -57,6 +57,13 @@
                             </div>
                     </div>
             </form>
+                  <div class="col-sm-4" style=" padding-bottom: 20px; background-color: rgba(176,185,196,0.5); height: 70%">
+                    <form method = "post" action=# name="text">
+                        <label for="story">Wynik:</label>
+                        <textarea id="text" name="tocode" rows="20"
+                                 style="width: 100%; height: 100%; background-color: rgba(0,126,194,0.1)"></textarea>  
+                    </form>
+                   </div> 
       </div>
   </div>
 </div>
