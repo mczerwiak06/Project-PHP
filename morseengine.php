@@ -135,10 +135,10 @@ function morseToString($morseCode){
       <a class="nav-link" href="index.php" >Home</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="affine.html">Szyfr afiniczny</a>
+      <a class="nav-link" href="affine.php">Szyfr afiniczny</a>
     </li>
       <li class="nav-item">
-      <a class="nav-link" href="vigenere.html">Szyfr Vigenere'a</a>
+      <a class="nav-link" href="vigenere.php">Szyfr Vigenere'a</a>
     </li>
   </ul>
 </nav>

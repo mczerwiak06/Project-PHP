@@ -17,7 +17,7 @@
           <a href="morse.php"><img src="img/mors.jpg" width="100%" height ="100%" class="image"></a>
         </div>
         <div class="col-sm-4" style="padding-bottom: 20px">
-            <a href="affine.html"><img src="img/affine.jpg" width="100%" height ="100%" class="image"></a>
+            <a href="affine.php"><img src="img/affine.jpg" width="100%" height ="100%" class="image"></a>
         </div>
         <div class="col-sm-4" style="padding-bottom: 20px">
             <a href="vigenere.html"><img src="img/vigenere1.jpg" width="100%" height ="100%" class="image"></a>
