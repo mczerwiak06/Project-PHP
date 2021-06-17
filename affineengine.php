@@ -162,7 +162,7 @@ function affineDecode($stringToDecode, $a, $b){
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <title>Kod Morse'a</title>
+  <title>Szyfr afiniczny</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/pages.css">
@@ -175,7 +175,7 @@ function affineDecode($stringToDecode, $a, $b){
 <body style="height:1000px; background-image: url(img/greybackground.jpg)">
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" style="background-color: darkgray">
-  <a class="navbar-brand" >Kod Morse'a</a>
+  <a class="navbar-brand" >Szyfr afiniczny</a>
   <ul class="navbar-nav">
     <li class="nav-item">
       <a class="nav-link" href="index.php" >Home</a>
@@ -192,16 +192,16 @@ function affineDecode($stringToDecode, $a, $b){
   <div class="container" style="margin-top: 10%">
       <div class="row">
         <div class="col-sm-4" style="padding-bottom: 20px; background-color: rgba(176,185,196,0.5); height: 70%">
-            <form method = "POST" action="morseengine.php" name="text" enctype="multipart/form-data">
+            <form method = "POST" action="affineengine.php" name="text" enctype="multipart/form-data">
                 <label for="tocode">Wpisz text:</label>
                 <textarea id="text" name="tocode" rows="20" style="width: 100%; height: 100%; background-color: rgba(0,126,194,0.1)">
 <?php
     if(array_key_exists('code', $_POST)){
-    $texttocode = $_POST['tocode']. PHP_EOL;
+    $texttocode = $_POST['tocode'];
     echo $texttocode;
 }
 else if(array_key_exists('decode', $_POST)){
-    $texttocode = $_POST['tocode']. PHP_EOL;
+    $texttocode = $_POST['tocode'];
     echo $texttocode; 
 }
 if (isset($_POST['readfile'])) {
@@ -293,7 +293,7 @@ else {
                                         <input type="submit" name="download" value="Pobierz plik" style="color: blue; background-color: rgba(0,0,0,0); padding-top: 10px; padding-bottom: 10px; border: none;">
                                     </li>
                                     <li class="nav-item">
-                                        <a href="morse.php" style="color: blue; text-decoration: none">Powrót</a>
+                                        <a href="affine.php" style="color: blue; text-decoration: none">Powrót</a>
                                     </li>
                                   </ul>            
                             </div>
@@ -304,20 +304,24 @@ else {
                         <label for="story">Wynik:</label>
                         <textarea id="text" name="tocode" rows="20" style="width: 100%; height: 100%; background-color: rgba(0,126,194,0.1)"><?php
     if(array_key_exists('code', $_POST)){
-    $texttocode = $_POST['tocode']. PHP_EOL;
-    $morse = stringToMorse($texttocode);
+    $keya = $_POST['selecta'];
+    $keyb = $_POST['selectb'];
+    $texttocode = $_POST['tocode'];
+    $affine = affineEncode($texttocode, $keya, $keyb);
         $fd = fopen('./files/codedtext.txt', 'w');
-        fwrite($fd, $morse);
+        fwrite($fd, $affine);
         fclose($fd);
-        echo $morse;
+        echo $affine;
 }
 else if(array_key_exists('decode', $_POST)){
-    $texttocode = $_POST['tocode']. PHP_EOL;
-    $morse = morseToString($texttocode);
+    $keya = $_POST['selecta'];
+    $keyb = $_POST['selectb'];
+    $texttocode = $_POST['tocode'];
+    $affine = affineDecode($texttocode, $keya, $keyb);
         $fd = fopen('./files/decodedtext.txt', 'w');
-        fwrite($fd, $morse);
+        fwrite($fd, $affine);
         fclose($fd);
-        echo $morse; 
+        echo $affine; 
 }
 ?></textarea>  
                     </form>
