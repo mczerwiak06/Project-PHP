@@ -42,7 +42,7 @@
                                   <ul class="navbar-nav">
                                     <div class="select">
                                         <p>Podaj klucz:</p>
-                                        <li><input type="text" required size=10px name="key" placeholder="..."></li>
+                                        <li><input type="text" required size=10px name="key" placeholder="klucz"></li>
                                     </div>
                                     <li class="nav-item">
                                         <input type="submit" name="code" value="Zakoduj" style="color: blue; background-color: rgba(0,0,0,0); border: none;">
