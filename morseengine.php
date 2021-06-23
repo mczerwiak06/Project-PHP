@@ -174,16 +174,7 @@ if (isset($_POST['readfile'])) {
           echo "Nie wybrałeś pliku.";
         }
       }
-if (isset($_POST['download'])){
-    $url = './files/decodedtext.txt';
-    $file_name = basename($url);
-    if(file_put_contents( $file_name,file_get_contents($url))) {
-    echo "File downloaded successfully";
-}
-else {
-    echo "File downloading failed.";
-}
-}
+
 ?>
                 </textarea>
                     </div>
@@ -198,7 +189,8 @@ else {
                                         <input type="submit" name="decode" value="Dekoduj" style="color: blue; background-color: rgba(0,0,0,0); padding-top: 10px; border: none">
                                     </li>  
                                     <li class="nav-item">
-                                        <input type="submit" name="download" value="Pobierz plik" style="color: blue; background-color: rgba(0,0,0,0); padding-top: 10px; padding-bottom: 10px; border: none;">
+                                        <a download= "morse.txt" href ="morse.txt">Pobierz plik</a>
+
                                     </li>
                                     <li class="nav-item">
                                         <a href="morse.php" style="color: blue; text-decoration: none">Powrót</a>
@@ -214,15 +206,15 @@ else {
     if(array_key_exists('code', $_POST)){
     $texttocode = $_POST['tocode']. PHP_EOL;
     $morse = stringToMorse($texttocode);
-        $fd = fopen('./files/codedtext.txt', 'w');
+        $fd = fopen('morse.txt', 'w');
         fwrite($fd, $morse);
         fclose($fd);
         echo $morse;
 }
 else if(array_key_exists('decode', $_POST)){
-    $texttocode = $_POST['tocode']. PHP_EOL;
+    $texttocode = $_POST['tocode'];
     $morse = morseToString($texttocode);
-        $fd = fopen('./files/decodedtext.txt', 'w');
+        $fd = fopen('morse.txt', 'w');
         fwrite($fd, $morse);
         fclose($fd);
         echo $morse; 

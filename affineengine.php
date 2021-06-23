@@ -290,7 +290,8 @@ else {
                                         <input type="submit" name="decode" value="Dekoduj" style="color: blue; background-color: rgba(0,0,0,0); padding-top: 10px; border: none">
                                     </li>  
                                     <li class="nav-item">
-                                        <input type="submit" name="download" value="Pobierz plik" style="color: blue; background-color: rgba(0,0,0,0); padding-top: 10px; padding-bottom: 10px; border: none;">
+                                        <a download= "affine.txt" href ="affine.txt">Pobierz plik</a>
+
                                     </li>
                                     <li class="nav-item">
                                         <a href="affine.php" style="color: blue; text-decoration: none">Powrót</a>
@@ -308,7 +309,7 @@ else {
     $keyb = $_POST['selectb'];
     $texttocode = $_POST['tocode'];
     $affine = affineEncode($texttocode, $keya, $keyb);
-        $fd = fopen('./files/codedtext.txt', 'w');
+        $fd = fopen('affine.txt', 'w');
         fwrite($fd, $affine);
         fclose($fd);
         echo $affine;
@@ -318,7 +319,7 @@ else if(array_key_exists('decode', $_POST)){
     $keyb = $_POST['selectb'];
     $texttocode = $_POST['tocode'];
     $affine = affineDecode($texttocode, $keya, $keyb);
-        $fd = fopen('./files/decodedtext.txt', 'w');
+        $fd = fopen('affine.txt', 'w');
         fwrite($fd, $affine);
         fclose($fd);
         echo $affine; 
